@@ -15,7 +15,7 @@ ansible-navigator:
   execution-environment:
     container-engine: podman
     enabled: True
-    environment-variables:   
+    environment-variables:
       pass:
         - AZURE_SUBSCRIPTION_ID
         - AZURE_CLIENT_ID
