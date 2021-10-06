@@ -105,7 +105,8 @@ You can alternatively run this with [ansible-navigator](https://github.com/ansib
 
 ```bash
 ansible-navigator run create_resources.yml
-```
+``` 
+
 ### EE Create Web Server
 
 <p align="center">
@@ -119,6 +120,20 @@ ansible-navigator run create_resources.yml
 </p>
 
 **Note**: I use [podman](https://podman.io/) as my container engine (`container-engine`). You can change to another alternative in the ansible [navigator config file](ansible-navigator.yml).
+
+#### Q: How do I use my SSH keys with an execution environment?
+
+From [FAQ](https://ansible-navigator.readthedocs.io/en/latest/faq/)
+
+A: The simplest way to use SSH keys with an execution environment is to use ssh-agent and use default key names.... 
+
+... ansible-navigator will automatically volume mount the user’s SSH keys into the execution environment in 2 different locations to assist users not running ssh-agent.
+
+...the keys are mounted into the home directory of the default user within the execution environment as specified by the user’s entry in the execution environment’s /etc/passwd file. When using OpenSSH without ssh-agent, only keys using the default names (id_rsa, id_dsa, id_ecdsa, id_ed25519, and id_xmss) will be used. ...
+
+-v /home/current_user/.ssh/:/root/.ssh/ 
+
+Note: When using ansible_ssh_private_key_file with execution environments, the path to the key needs to reference it’s location after being volume mounted to the execution environment. (eg /home/runner/.ssh/key_name or /root/.ssh/key_name). It may be convenient to specify the path to the key as ~/.ssh/key_name which will resolve to the user’s home directory with or without the use of an execution environment.
 
 ## Run from the Ansible Core CLI
 

@@ -14,14 +14,17 @@ ansible-navigator:
 
   execution-environment:
     container-engine: podman
-    enabled: False
-    environment-variables:
+    enabled: True
+    environment-variables:   
       pass:
         - AZURE_SUBSCRIPTION_ID
         - AZURE_CLIENT_ID
         - AZURE_SECRET
         - AZURE_TENANT
-    image: quay.io/nleiva/ee-cloud-image
+        - USER
+    image: quay.io/nleiva/ee-web-image
 
   playbook-artifact:
     enable: False
+
+  mode: stdout
