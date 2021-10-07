@@ -14,7 +14,9 @@ ansible-navigator:
 
   execution-environment:
     container-engine: podman
-    enabled: True
+    enabled: true
+    pull-policy: missing
+    image: quay.io/nleiva/ee-web-image
     environment-variables:
       pass:
         - AZURE_SUBSCRIPTION_ID
@@ -22,7 +24,6 @@ ansible-navigator:
         - AZURE_SECRET
         - AZURE_TENANT
         - USER
-    image: quay.io/nleiva/ee-web-image
 
   playbook-artifact:
     enable: False
